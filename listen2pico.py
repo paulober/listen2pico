@@ -1,6 +1,13 @@
 import sys, time
 from threading import Thread, Event
-import pyboard
+
+try:
+    import pyboard
+except ImportError:
+    print("Error: can't import pyboard module.")
+    print("Maybe pyserial package is not installed. You can install it using:")
+    print("  python.exe -m pip install pyserial")
+    sys.exit(2)
 
 def read_serial_port(pyb: pyboard.Pyboard, stop_event: Event):
     while not stop_event.is_set():
@@ -33,7 +40,7 @@ def main(dev: str):
     serial_thread = Thread(target=read_serial_port, args=(pyb, stop_event,))
     serial_thread.daemon = True
     try:
-        print("Connecting to pyboard...")
+        print("Connecting to pyboard; press Ctrl-C to exit...")
         serial_thread.start()
         while True:
             time.sleep(1)

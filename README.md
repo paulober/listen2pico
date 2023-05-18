@@ -1,11 +1,15 @@
 # Listen2Pico
 is a small command line utility for listening to MicroPython REPL output from embeded devices (read-only).
 
+## Requirements
+- Python 3.x >= 3.9
+- `pyserial` package installed
+
 ## Usage
 ```powershell
 python.exe .\listen2pico.py <port>
 ```
-- CTRL-C to exit
+*CTRL-C to exit*
 
 ---
 
